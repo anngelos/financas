@@ -1,8 +1,6 @@
 const mongoose = require('../db/conn')
 const { Schema } = mongoose
 
-// AULA 253
-
 const Debts = mongoose.model(
   'Debts',
   new Schema({
@@ -22,7 +20,7 @@ const Debts = mongoose.model(
       type: Array,
       required: true,
     },
-    author: Object,
+    user: Object,
   },
   {timestamps: true}),
 )

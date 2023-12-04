@@ -1,17 +1,22 @@
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 
-const getUserByToken = async (token) => {
+const getUserByToken = async (token, res) => {
   if (!token) {
-    return res.status(401).json({ message: "Acesso negado." });
+    return res.status(401).json({ error: "Acesso negado!" });
   }
 
-  const decoded = jwt.verify(token, "degatembritt");
-  const userId = decoded.id;
+  try {
+    const decoded = jwt.verify(token, "degatembritt");
 
-  const user = await User.findOne({ _id: userId });
+    const userId = decoded.id;
 
-  return user;
+    const user = await User.findOne({ _id: userId });
+
+    return user;
+  } catch (err) {
+    return res.status(401).json({ error: "Token inválido" });
+  }
 };
 
 module.exports = getUserByToken;
