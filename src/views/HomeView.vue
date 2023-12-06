@@ -1,10 +1,10 @@
 <template>
   <div class="h-screen md:flex">
-    <div class="relative overflow-hidden md:flex w-1/2 bg-gradient-to-tr from-[#57534E] to-[#57534E] i justify-around items-center hidden">
+    <div class="relative overflow-hidden md:flex w-1/2 bg-gradient-to-tr from-[#527853] to-[#527853] i justify-around items-center hidden">
       <div>
         <h1 class="text-white font-bold text-4xl font-sans">Finanças</h1>
         <p class="text-white mt-1">A plataforma ideal para você gerenciar os gastos mensais da sua casa de forma rápida e simples.</p>
-        <button type="submit" class="block w-28 bg-white text-[#57534E] mt-4 py-2 rounded-2xl font-bold mb-2">Leia Mais</button>
+        <button type="submit" class="block w-28 bg-white text-[#527853] mt-4 py-2 rounded-2xl font-bold mb-2">Leia Mais</button>
       </div>
       <div class="absolute -bottom-32 -left-40 w-80 h-80 border-4 rounded-full border-opacity-30 border-t-8"></div>
       <div class="absolute -bottom-40 -left-20 w-80 h-80 border-4 rounded-full border-opacity-30 border-t-8"></div>
@@ -31,7 +31,7 @@
           </svg>
           <input class="pl-2 outline-none" type="text" name="" id="" placeholder="Senha" />
         </div>
-        <button type="submit" class="block w-full bg-[#57534E] mt-4 py-2 rounded-2xl text-white font-semibold mb-2" @click="loginUser">Entrar</button>
+        <button type="submit" class="block w-full bg-[#527853] mt-4 py-2 rounded-2xl text-white font-semibold mb-2" @click="loginUser">Entrar</button>
         <router-link class="text-sm ml-2 hover:text-blue-500 cursor-pointer" to="/register">Não tem uma conta? Clique aqui</router-link>
       </form>
     </div>

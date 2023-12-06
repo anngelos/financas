@@ -1,6 +1,6 @@
 <template>
   <form class="h-screen md:flex">
-    <div class="relative overflow-hidden md:flex w-1/2 bg-gradient-to-tr from-[#57534E] to-[#57534E] i justify-around items-center hidden">
+    <div class="relative overflow-hidden md:flex w-1/2 bg-gradient-to-tr from-[#527853] to-[#527853] i justify-around items-center hidden">
       <div>
         <h1 class="text-white font-bold text-4xl font-sans">Finanças</h1>
         <p class="text-white mt-1">Não perca tempo, se cadastre e comece a usar agora mesmo.</p>
@@ -39,7 +39,7 @@
           </svg>
           <input class="pl-2 outline-none" type="text" id="confirmpassword" name="confirmpassword" v-model="confirmpassword" placeholder="Confirmar Senha" />
         </div>
-        <button type="submit" class="block w-full bg-[#57534E] mt-4 py-2 rounded-2xl text-white font-semibold mb-2" @click.prevent="createNewUser()">Cadastrar</button>
+        <button type="submit" class="block w-full bg-[#527853] mt-4 py-2 rounded-2xl text-white font-semibold mb-2" @click.prevent="createNewUser()">Cadastrar</button>
         <router-link class="text-sm ml-2 hover:text-blue-500 cursor-pointer" to="/">Voltar</router-link>
       </form>
     </div>
