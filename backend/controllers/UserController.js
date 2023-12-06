@@ -11,17 +11,17 @@ module.exports = class UserController {
     const { name, nickname, password, confirmpassword, image } = req.body
 
     if (!name) {
-      res.status(422).json({ message: "O nome é obrigatório." })
+      res.status(422).json({ message: "O nome do usuário é obrigatório." })
       return
     }
 
     if (!nickname) {
-      res.status(422).json({ message: "O apelido é obrigatório." })
+      res.status(422).json({ message: "O apelido do usuário é obrigatório." })
       return
     }
 
     if (!password) {
-      res.status(422).json({ message: "A senha é obrigatório." })
+      res.status(422).json({ message: "A senha é obrigatória." })
       return
     }
 
