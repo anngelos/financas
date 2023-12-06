@@ -60,5 +60,16 @@ module.exports = class DebtsController {
       res.status(500).json({ message: err })
     }
   }
+
+  static async getAllUserDebts(req, res) {
+    const token = getToken(req)
+    const user = await getUserByToken(token, res)
+
+    const debts = await Debts.find({ 'user._id': user._id }).sort('-createdAt');
+
+    res.status(200).json({
+      debts,
+    })
+  }
   
 }

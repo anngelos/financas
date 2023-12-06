@@ -120,7 +120,7 @@ module.exports = class UserController {
     const id = req.params.id
 
     const token = getToken(req)
-    const user = await getUserByToken(token)
+    const user = await getUserByToken(token, res)
     
     const { name, nickname, password, confirmpassword } = req.body
 
