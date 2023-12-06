@@ -4,8 +4,8 @@
       class="relative overflow-hidden md:flex w-1/2 bg-gradient-to-tr from-[#57534E] to-[#57534E] i justify-around items-center hidden">
       <div>
         <h1 class="text-white font-bold text-4xl font-sans">Finanças</h1>
-        <p class="text-white mt-1">A plataforma ideal para você gerenciar os gastos mensais da sua casa de forma rápida e simples.</p>
-        <button type="submit" class="block w-28 bg-white text-[#57534E] mt-4 py-2 rounded-2xl font-bold mb-2">Leia Mais</button>
+        <p class="text-white mt-1">Não perca tempo, se cadastre e comece a usar agora mesmo.</p>
+        <!-- <button type="submit" class="block w-28 bg-white text-[#57534E] mt-4 py-2 rounded-2xl font-bold mb-2">Leia Mais</button> -->
       </div>
       <div class="absolute -bottom-32 -left-40 w-80 h-80 border-4 rounded-full border-opacity-30 border-t-8"></div>
       <div class="absolute -bottom-40 -left-20 w-80 h-80 border-4 rounded-full border-opacity-30 border-t-8"></div>
@@ -14,8 +14,14 @@
     </div>
     <div class="flex md:w-1/2 justify-center py-10 items-center bg-white">
       <form class="bg-white">
-        <h1 class="text-gray-800 font-bold text-2xl mb-1">Olá, que bom ter você aqui!</h1>
-        <p class="text-sm font-normal text-gray-600 mb-7">Seja bem-vindo(a)</p>
+        <h1 class="text-gray-800 font-bold text-2xl mb-1">Crie seu cadastro</h1>
+        <p class="text-sm font-normal text-gray-600 mb-7">Venha fazer parte você também, vem...</p>
+        <div class="flex items-center border border-gray-400 py-2 px-3 rounded-2xl mb-4">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
+          </svg>
+          <input class="pl-2 outline-none" type="text" name="" id="" placeholder="Nome" />
+        </div>
         <div class="flex items-center border border-gray-400 py-2 px-3 rounded-2xl mb-4">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-700" fill="none" viewBox="0 0 24 24"
             stroke="currentColor">
@@ -32,16 +38,9 @@
           </svg>
           <input class="pl-2 outline-none" type="text" name="" id="" placeholder="Senha" />
         </div>
-        <button type="submit" class="block w-full bg-[#57534E] mt-4 py-2 rounded-2xl text-white font-semibold mb-2">Entrar</button>
-        <router-link class="text-sm ml-2 hover:text-blue-500 cursor-pointer" to="/register">Não tem uma conta? Clique aqui</router-link>
+        <button type="submit"
+          class="block w-full bg-[#57534E] mt-4 py-2 rounded-2xl text-white font-semibold mb-2">Cadastrar</button>
+        <router-link class="text-sm ml-2 hover:text-blue-500 cursor-pointer" to="/">Voltar</router-link>
       </form>
     </div>
-  </div>
-</template>
-
-<script>
-export default {
-  name: 'HomeView',
-  components: {}
-}
-</script>
+</div></template>
