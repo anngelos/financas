@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken')
 const createUserToken = async (user, req, res) => {
   const token = jwt.sign({
     name: user.name,
+    nickname: user.nickname,
     id: user._id
   }, "degatembritt")
 
