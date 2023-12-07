@@ -80,10 +80,10 @@ export default {
 
       try {
         const res = await axios.post('http://localhost:5000/users/register', newUser)
-        alert(`O usuário ${this.name} foi criado com sucesso.`)
+        this.$swal(`O usuário ${this.name} foi criado com sucesso.`)
         console.log(res)
       } catch (error) {
-        alert(error.response.data.message)
+        this.$swal('Oops...', error.response.data.message, 'error')
       }
 
       this.name = ''
