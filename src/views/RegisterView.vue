@@ -80,10 +80,27 @@ export default {
 
       try {
         const res = await axios.post('http://localhost:5000/users/register', newUser)
-        this.$swal(`O usuário ${this.name} foi criado com sucesso.`)
+
+        this.$swal.fire({
+          icon: "success",
+          position: "top-end",
+          html: `O usuário <b>${this.name}</b> foi criado com sucesso.`,
+          toast: true,
+          showConfirmButton: false,
+          timer: 4000,
+          timerProgressBar: true,
+        });        
         console.log(res)
       } catch (error) {
-        this.$swal('Oops...', error.response.data.message, 'error')
+        this.$swal.fire({
+          icon: "error",
+          position: "top-end",
+          text: error.response.data.message,
+          toast: true,
+          showConfirmButton: false,
+          timer: 4000,
+          timerProgressBar: true,
+        });
       }
 
       this.name = ''
