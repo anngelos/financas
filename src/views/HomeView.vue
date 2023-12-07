@@ -1,10 +1,13 @@
 <template>
-  <div class="h-screen md:flex">
-    <div class="relative overflow-hidden md:flex w-1/2 bg-gradient-to-tr from-[#527853] to-[#527853] i justify-around items-center hidden">
+  <form class="h-screen md:flex">
+    <div
+      class="relative overflow-hidden md:flex w-1/2 bg-gradient-to-tr from-[#527853] to-[#527853] i justify-around items-center hidden">
       <div>
         <h1 class="text-white font-bold text-4xl font-sans">Finanças</h1>
-        <p class="text-white mt-1">A plataforma ideal para você gerenciar os gastos mensais da sua casa de forma rápida e simples.</p>
-        <button type="submit" class="block w-28 bg-white text-[#527853] mt-4 py-2 rounded-2xl font-bold mb-2">Leia Mais</button>
+        <p class="text-white mt-1">A plataforma ideal para você gerenciar os gastos mensais da sua casa de forma rápida e
+          simples.</p>
+        <button type="submit" class="block w-28 bg-white text-[#527853] mt-4 py-2 rounded-2xl font-bold mb-2">Leia
+          Mais</button>
       </div>
       <div class="absolute -bottom-32 -left-40 w-80 h-80 border-4 rounded-full border-opacity-30 border-t-8"></div>
       <div class="absolute -bottom-40 -left-20 w-80 h-80 border-4 rounded-full border-opacity-30 border-t-8"></div>
@@ -21,7 +24,8 @@
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
               d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A13.916 13.916 0 008 11a4 4 0 118 0c0 1.017-.07 2.019-.203 3m-2.118 6.844A21.88 21.88 0 0015.171 17m3.839 1.132c.645-2.266.99-4.659.99-7.132A8 8 0 008 4.07M3 15.364c.64-1.319 1-2.8 1-4.364 0-1.457.39-2.823 1.07-4" />
           </svg>
-          <input class="pl-2 outline-none" type="text" name="" id="" placeholder="Apelido" />
+          <input class="pl-2 outline-none" type="text" name="nickname" id="nickname" v-model="login.nickname"
+            placeholder="Apelido" />
         </div>
         <div class="flex items-center border border-gray-400 py-2 px-3 rounded-2xl">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-700" viewBox="0 0 20 20" fill="currentColor">
@@ -29,24 +33,60 @@
               d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
               clip-rule="evenodd" />
           </svg>
-          <input class="pl-2 outline-none" type="text" name="" id="" placeholder="Senha" />
+          <input class="pl-2 outline-none" type="text" name="password" id="password" v-model="login.password"
+            placeholder="Senha" />
         </div>
-        <button type="submit" class="block w-full bg-[#527853] mt-4 py-2 rounded-2xl text-white font-semibold mb-2" @click="loginUser">Entrar</button>
-        <router-link class="text-sm ml-2 hover:text-blue-500 cursor-pointer" to="/register">Não tem uma conta? Clique aqui</router-link>
+        <button type="submit" class="block w-full bg-[#527853] mt-4 py-2 rounded-2xl text-white font-semibold mb-2"
+          @click.prevent="loginUser()">Entrar</button>
+        <router-link class="text-sm ml-2 hover:text-blue-500 cursor-pointer" to="/register">Não tem uma conta? Clique
+          aqui</router-link>
       </form>
     </div>
-  </div>
+  </form>
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   name: 'HomeView',
   data() {
-    return {}
+    return {
+      login: {
+        nickname: '',
+        password: '',
+      }
+    }
   },
   methods: {
-    loginUser() {
-      alert('voce clicou em entrar')
+    async loginUser() {
+      try {
+        let response = await axios.post('http://localhost:5000/users/login', this.login);
+        let token = response.data.token;
+        localStorage.setItem("jwt", token);
+        if (token) {
+          this.$swal.fire({
+            icon: "success",
+            position: "top-end",
+            text: 'Você foi logado com sucesso.',
+            toast: true,
+            showConfirmButton: false,
+            timer: 4000,
+            timerProgressBar: true,
+          });
+          this.$router.push("/dashboard");
+        }
+      } catch (error) {
+        this.$swal.fire({
+          icon: "error",
+          position: "top-end",
+          text: error.response.data.message,
+          toast: true,
+          showConfirmButton: false,
+          timer: 4000,
+          timerProgressBar: true,
+        });
+      }
     }
   }
 }

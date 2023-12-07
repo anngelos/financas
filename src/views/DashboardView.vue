@@ -1,8 +1,12 @@
 <template>
-  <div class="main">
+  <div class="main" v-if="user">
     <h1 class="dash-title">~~ DASHBOARD ~~</h1>
-    <p>Olá, user</p>
-    <button @click="showAlert">Hello world</button>
+    <h1><b>Name:</b> {{ user.name }}</h1>
+    <h1><b>Nickname:</b> {{ user.nickname }}</h1>
+  </div>
+
+  <div class="main" v-else>
+    <H1>OLÁ USUARIO INEXISTENTE</H1>
   </div>
 </template>
 
