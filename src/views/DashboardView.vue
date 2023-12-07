@@ -1,12 +1,9 @@
 <template>
-  <div class="main" v-if="user">
+  <div class="main">
     <h1 class="dash-title">~~ DASHBOARD ~~</h1>
     <h1><b>Name:</b> {{ user.name }}</h1>
     <h1><b>Nickname:</b> {{ user.nickname }}</h1>
-  </div>
-
-  <div class="main" v-else>
-    <H1>OLÁ USUARIO INEXISTENTE</H1>
+    <button type="button" class="block w-60 bg-[#527853] mt-4 py-2 rounded-2xl text-white font-semibold mb-2" @click="logUserOut()">Sair</button>
   </div>
 </template>
 
@@ -26,6 +23,10 @@ export default {
       let decoded = VueJwtDecode.decode(token);
       this.user = decoded;
     },
+    logUserOut() {
+      localStorage.removeItem("jwt");
+      this.$router.push("/");
+    }
   },
   created() {
     this.getUserDetails();
