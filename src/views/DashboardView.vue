@@ -1,6 +1,7 @@
 <template>
   <div class="main">
     <h1 class="dash-title">~~ DASHBOARD ~~</h1>
+    <img class="img" :src="this.user ? require(`../../backend/public/images/users/${this.user.image}`) : ''">
     <h1><b>Name:</b> {{ user.name }}</h1>
     <h1><b>Nickname:</b> {{ user.nickname }}</h1>
     <button type="button" class="block w-60 bg-[#527853] mt-4 py-2 rounded-2xl text-white font-semibold mb-2" @click="logUserOut()">Sair</button>
@@ -14,7 +15,7 @@ export default {
   name: 'DashboardView',
   data() {
     return {
-      user: {}
+      user: {},
     }
   },
   methods: {
@@ -22,6 +23,9 @@ export default {
       let token = localStorage.getItem("jwt");
       let decoded = VueJwtDecode.decode(token);
       this.user = decoded;
+      console.log('name: ', this.user.name)
+      console.log('nickname: ', this.user.nickname)
+      console.log('image: ', this.user.image)
     },
     logUserOut() {
       localStorage.removeItem("jwt");
@@ -47,5 +51,9 @@ export default {
 
 .dash-title {
   font-size: 28px;
+}
+
+.img {
+  width: 10%;
 }
 </style>
