@@ -71,7 +71,7 @@ export default {
             text: 'Você foi logado com sucesso.',
             toast: true,
             showConfirmButton: false,
-            timer: 4000,
+            timer: 2000,
             timerProgressBar: true,
           });
           this.$router.push("/dashboard");
