@@ -3,37 +3,39 @@
     <h1 class="w-3/12"></h1>
     <nav class="nav font-semibold text-lg">
       <ul class="flex items-center">
-        <li class="p-4 border-b-2 border-white border-opacity-0 text-white hover:border-opacity-100 hover:text-white duration-200 cursor-pointer">
-          <a href="">Dívidas</a>
+        <li class="p-4 text-white cursor-pointer">
+          <router-link to="/dashboard" exact>Dívidas</router-link>
         </li>
-        <li class="p-4 border-b-2 border-white border-opacity-0 text-white hover:border-opacity-100 hover:text-white duration-200 cursor-pointer">
-          <a href="">Criar dívida</a>
+        <li class="p-4 text-white cursor-pointer">
+          <router-link class="link" to="/create-debt">Criar dívida</router-link>
         </li>
       </ul>
     </nav>
     <div class="w-3/12 flex justify-center items-center ang">
       <div class="menu-item" @click="isOpen = !isOpen">
         <span class="cursor-pointer text-white mr-2 font-bold">{{ user.name }}</span>
-          <transition name="fade" appear>
-            <div class="sub-menu" v-if="isOpen">
-              <div class="menu-item">
-                <ul>
-                  <li class="dditem">Editar Perfil</li>
-                  <li class="dditem">
-                    <button type="button" @click="logUserOut()">Sair</button>
-                  </li>
-                </ul>
-              </div>
+        <transition name="fade" appear>
+          <div class="sub-menu" v-if="isOpen">
+            <div class="menu-item">
+              <ul>
+                <li class="dditem">Editar Perfil</li>
+                <li class="dditem">
+                  <button type="button" @click="logUserOut()">Sair</button>
+                </li>
+              </ul>
             </div>
-          </transition>
+          </div>
+        </transition>
       </div>
       <img class="w-10 h-10 p-1 rounded-full user" :src="user.image ? require(`../../backend/public/images/users/${this.user.image}`) : require(`../assets/profilepic.jpg`)">
     </div>
   </header>
+  <router-view />
 </template>
 
 <script>
 import VueJwtDecode from "vue-jwt-decode";
+import { RouterLink, RouterView } from "vue-router";
 
 export default {
   name: 'DashboardView',
@@ -72,6 +74,10 @@ export default {
 <style>
 .img {
   width: 10%;
+}
+
+.router-link-exact-active {
+  border-bottom: 2px solid white;
 }
 
 .menu-item .sub-menu {

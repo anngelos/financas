@@ -1,36 +1,48 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
-import RegisterView from '../views/RegisterView.vue'
-import DashboardView from '../views/DashboardView.vue'
+import { createRouter, createWebHistory } from "vue-router";
+import HomeView from "../views/HomeView.vue";
+import RegisterView from "../views/RegisterView.vue";
+import DashboardView from "../views/DashboardView.vue";
+import DebtsListView from "../views/DebtsListView.vue";
+import CreateDebtView from "../views/CreateDebtView.vue"
 
 const routes = [
   {
-    path: '/',
-    name: 'home',
-    component: HomeView
+    path: "/",
+    name: "home",
+    component: HomeView,
   },
   {
-    path: '/register',
-    name: 'register',
-    component: RegisterView
+    path: "/register",
+    name: "register",
+    component: RegisterView,
   },
   {
-    path: '/dashboard',
-    name: 'dashboard',
+    path: "/dashboard",
+    name: "dashboard",
     component: DashboardView,
+    children: [
+      {
+        path: "",
+        component: DebtsListView,
+      },
+      {
+        path: "/create-debt",
+        component: CreateDebtView
+      }
+    ],
     meta: {
-      requiresAuth: true
-    }
-  }
-]
+      requiresAuth: true,
+    },
+  },
+];
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
-  routes
-})
+  routes,
+});
 
 router.beforeEach((to, from, next) => {
-  if (to.matched.some(record => record.meta.requiresAuth)) {
+  if (to.matched.some((record) => record.meta.requiresAuth)) {
     if (localStorage.getItem("jwt") == null) {
       next({ path: "/" });
     } else {
@@ -41,4 +53,4 @@ router.beforeEach((to, from, next) => {
   }
 });
 
-export default router
+export default router;
