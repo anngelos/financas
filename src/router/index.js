@@ -23,10 +23,12 @@ const routes = [
     children: [
       {
         path: "",
+        name: "debts-list",
         component: DebtsListView,
       },
       {
         path: "/create-debt",
+        name: "create-debt",
         component: CreateDebtView
       }
     ],

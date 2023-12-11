@@ -80,7 +80,7 @@
             <hr class="mt-4" />
             <div class="flex flex-row-reverse p-3">
               <div class="flex-initial pl-3 mt-8">
-                <button type="button"
+                <button type="button" @click="createDebt()"
                   class="flex items-center px-5 py-2.5 font-medium tracking-wide text-white bg-[#527853] rounded-md active:scale-95 ease-in-out">
                   <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#FFFFFF">
                     <path d="M0 0h24v24H0V0z" fill="none"></path>
@@ -119,6 +119,9 @@ export default {
     },
     deleteBill(index) {
       this.debtsArr.splice(index, 1)
+    },
+    createDebt() {
+      console.log('divida criada')
     }
   }
 }

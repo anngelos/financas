@@ -33,7 +33,7 @@ module.exports = class DebtsController {
     }
 
     if (!debtsArr) {
-      res.status(422).json({ message: 'Deve contar dívidas neste campo.'})
+      res.status(422).json({ message: 'Deve constar dívidas para salvar no sistema.'})
       return
     }
 
@@ -61,6 +61,7 @@ module.exports = class DebtsController {
     }
   }
 
+  // puxar as dividas que o usuario logado criou
   static async getAllUserDebts(req, res) {
     const token = getToken(req)
     const user = await getUserByToken(token, res)
