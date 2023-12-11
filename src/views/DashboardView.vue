@@ -38,7 +38,7 @@
 <script>
 import VueJwtDecode from "vue-jwt-decode";
 import { RouterLink, RouterView } from "vue-router";
-import { mapState } from "vuex"
+import { mapState, mapMutations } from "vuex"
 
 export default {
   name: 'DashboardView',
@@ -53,14 +53,18 @@ export default {
     })
   },
   methods: {
+    ...mapMutations({
+      clearUser: 'clearUser',
+    }),
     getUserDetails() {
       let token = localStorage.getItem("jwt");
       let decoded = VueJwtDecode.decode(token);
-      //this.user = decoded; FAZER AQUI A CHAMADA DO ITEM PRA MUDAR O ESTADO DE USER PRA RECEBER O JWT
+      this.$store.commit('setUser', decoded);
       console.log(this.user)
     },
     logUserOut() {
       localStorage.removeItem("jwt");
+      this.clearUser()
       this.$router.push("/");
       this.$swal.fire({
         icon: "warning",

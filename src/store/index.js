@@ -8,7 +8,14 @@ export default createStore({
   },
   getters: {
   },
-  mutations: {},
+  mutations: {
+    setUser(state, userData) {
+      state.user = userData;
+    },
+    clearUser(state) {
+      state.user = {};
+    }
+  },
   actions: {
     async loginUser({state, commit}, params) {
       try {
