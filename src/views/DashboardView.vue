@@ -1,13 +1,13 @@
 <template>
   <header class="header sticky top-0 bg-[#527853] shadow-md flex items-center justify-between px-8 py-02">
     <h1 class="w-3/12"></h1>
-    <nav class="nav font-semibold text-lg">
+    <nav class="nav font-bold text-md">
       <ul class="flex items-center">
-        <li class="p-4 text-white cursor-pointer">
-          <router-link to="/dashboard" exact>Dívidas</router-link>
+        <li class="p-4 text-white">
+          <router-link class="cursor-pointer" to="/dashboard" exact>DÍVIDAS</router-link>
         </li>
-        <li class="p-4 text-white cursor-pointer">
-          <router-link class="link" to="/create-debt">Criar dívida</router-link>
+        <li class="p-4 text-white">
+          <router-link class="cursor-pointer" to="/create-debt">CRIAR DÍVIDA</router-link>
         </li>
       </ul>
     </nav>
