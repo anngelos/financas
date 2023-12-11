@@ -18,9 +18,11 @@
           <div class="sub-menu" v-if="isOpen">
             <div class="menu-item">
               <ul>
-                <li class="dditem">Editar Perfil</li>
-                <li class="dditem">
-                  <button type="button" @click="logUserOut()">Sair</button>
+                <li>
+                  <button type="button" class="w-full dditem">Editar Perfil</button>
+                </li>
+                <li>
+                  <button type="button" class="w-full dditem" @click="logUserOut()">Sair</button>
                 </li>
               </ul>
             </div>
@@ -36,20 +38,26 @@
 <script>
 import VueJwtDecode from "vue-jwt-decode";
 import { RouterLink, RouterView } from "vue-router";
+import { mapState } from "vuex"
 
 export default {
   name: 'DashboardView',
   data() {
     return {
-      user: {},
       isOpen: false
     }
+  },
+  computed: {
+    ...mapState({
+      user: state => state.user
+    })
   },
   methods: {
     getUserDetails() {
       let token = localStorage.getItem("jwt");
       let decoded = VueJwtDecode.decode(token);
-      this.user = decoded;
+      //this.user = decoded; FAZER AQUI A CHAMADA DO ITEM PRA MUDAR O ESTADO DE USER PRA RECEBER O JWT
+      console.log(this.user)
     },
     logUserOut() {
       localStorage.removeItem("jwt");
