@@ -22,6 +22,7 @@ export default createStore({
         console.log(params)
         let response = await axios.post('http://localhost:5000/users/login', params);
         let token = response.data.token;
+        console.log('o token: ', token)
         localStorage.setItem("jwt", token);
         if (token) {
           Swal.fire({

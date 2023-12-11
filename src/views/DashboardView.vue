@@ -60,7 +60,6 @@ export default {
       let token = localStorage.getItem("jwt");
       let decoded = VueJwtDecode.decode(token);
       this.$store.commit('setUser', decoded);
-      console.log(this.user)
     },
     logUserOut() {
       localStorage.removeItem("jwt");

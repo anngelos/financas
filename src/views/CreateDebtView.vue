@@ -103,6 +103,9 @@
 </template>
 
 <script>
+import axios from "axios"
+import { mapState } from "vuex"
+
 export default {
   name: "CreateDebtView",
   data() {
@@ -113,6 +116,11 @@ export default {
       debtsArr: []
     }
   },
+  computed: {
+    ...mapState({
+      user: state => state.user
+    })
+  },
   methods: {
     addInput() {
       this.debtsArr.push({});
@@ -120,8 +128,53 @@ export default {
     deleteBill(index) {
       this.debtsArr.splice(index, 1)
     },
-    createDebt() {
-      console.log('divida criada')
+    async createDebt() {
+      const newDebt = {
+        monthRef: this.monthRef,
+        yearRef: this.yearRef,
+        salary: this.salary,
+        debtsArr: this.debtsArr,
+        user: {
+          id: this.user.id,
+          name: this.user.name,
+          nickname: this.user.nickname,
+          image: this.user.image,
+        }
+      }
+
+      const token = localStorage.getItem('jwt')
+
+      try {
+        let response = await axios.post('http://localhost:5000/debts/create', newDebt,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`
+            }
+          });
+
+        if (token) {
+          this.$swal.fire({
+            icon: "success",
+            title: "Sucesso",
+            text: 'Divida criada.',
+            confirmButtonText: "Certo",
+          });
+
+          this.monthRef = ''
+          this.yearRef = ''
+          this.salary = ''
+          this.debtsArr = {}
+
+          return 'success';
+        }
+      } catch (error) {
+        this.$swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: error.response.data.message,
+          confirmButtonText: "Certo",
+        });
+      }
     }
   }
 }
