@@ -66,7 +66,7 @@
                     class="text-black placeholder-black w-full px-4 py-2.5 mt-2 text-base ease-in-out rounded-lg bg-[#B6C4B6] focus:border-blueGray-500 dark:focus:bg-gray-800 focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400" />
                 </div>
                 <div class="flex-grow">
-                  <input placeholder="Valor da Conta" type="text" name="billValue" id="billValue"
+                  <input placeholder="Valor da Conta" type="number" name="billValue" id="billValue"
                     v-model="debtArr.billValue"
                     class="text-black placeholder-black w-full px-4 py-2.5 mt-2 text-base ease-in-out rounded-lg bg-[#B6C4B6] focus:border-blueGray-500 dark:focus:bg-gray-800 focus:outline-none focus:shadow-outline focus:ring-2 ring-offset-current ring-offset-2 ring-gray-400" />
                 </div>
