@@ -23,7 +23,6 @@ export default createStore({
     async loginUser({ state, commit }, params) {
       try {
         let response = await axios.post("http://localhost:5000/users/login", params);
-        console.log('resposta do login: ', response)
         let token = response.data.token;
         localStorage.setItem("jwt", token);
         if (token) {

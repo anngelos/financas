@@ -13,7 +13,6 @@ module.exports = class DebtsController {
     })
   }
 
-  // criação de registros das dívidas
   static async create(req, res) {
     const { monthRef, yearRef, salary, debtsArr } = req.body;
 
@@ -40,11 +39,18 @@ module.exports = class DebtsController {
     const token = getToken(req)
     const user = await getUserByToken(token, res)
 
+    let sumValue = 0;
+
+    debtsArr.forEach((item => {
+      sumValue += item.billValue;
+    }));
+
     const debt = new Debts({
       monthRef,
       yearRef,
       salary,
       debtsArr,
+      debtsBillSum: sumValue,
       user: {
         _id: user._id,
         name: user.name,

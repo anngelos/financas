@@ -20,6 +20,9 @@ const Debts = mongoose.model(
       type: Array,
       required: true,
     },
+    debtsBillSum: {
+      type: Number,
+    },
     user: Object,
   },
   {timestamps: true}),

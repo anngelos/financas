@@ -27,8 +27,8 @@
         <div>
           <div class="px-4 py-5 sm:p-6">
             <dl>
-              <dt class="text-sm leading-5 font-medium text-black">Total de Dívidas</dt>
-              <dd class="mt-1 text-3xl leading-9 font-semibold text-black">{{ totalBillValue() }}</dd>
+              <dt class="text-sm leading-5 font-medium text-black">Total de Despesa</dt>
+              <dd class="mt-1 text-3xl leading-9 font-semibold text-black">{{ formatMoney(debt.debtsBillSum) }}</dd>
             </dl>
           </div>
         </div>
@@ -71,25 +71,6 @@ export default {
     formatMoney(value) {
       return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(value);
     },
-    totalBillValue() {
-      // const data = this.debts.map(data => data.debtsArr);
-      // let billValues = [];
-
-      // let arr = data.map(item => item)
-      // console.log('arr: ', arr)
-
-      // arr.forEach(item => {
-      //   item.forEach(el => {
-      //     if (el && el.billValue) {
-      //       billValues.push(el.billValue);
-      //     }
-      //   });
-      // });
-
-      // console.log(billValues)
-
-      return 'Total Contas';
-    },
     remainingValue() {
       return 'Valor Restante'
     },
@@ -107,7 +88,7 @@ export default {
         const response = await axios.get(url, config);
         this.$store.commit('setDebts', response.data.debts);
       } catch (error) {
-        console.log("Houve erro!");
+        console.log("Desculpe, mas houve um erro ao obter as dívidas...");
       }
     },
   },
