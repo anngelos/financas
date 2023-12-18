@@ -18,11 +18,11 @@
           <div class="sub-menu" v-if="isOpen">
             <div class="menu-item">
               <ul>
-                <li>
-                  <button type="button" class="w-full dditem">Editar Perfil</button>
+                <li class="w-full option-item">
+                  <router-link class="w-full option-item" to="/edit-user">Editar Perfil</router-link>
                 </li>
                 <li>
-                  <button type="button" class="w-full dditem" @click="logUserOut()">Sair</button>
+                  <button type="button" class="w-full option-item" @click="logUserOut()">Sair</button>
                 </li>
               </ul>
             </div>
@@ -101,11 +101,12 @@ export default {
   width: 100px;
 }
 
-.dditem {
+.option-item {
   margin-top: 5px;
+  border-bottom: none;
 }
 
-.dditem:hover {
+.option-item:hover {
   cursor: pointer;
   background-color: #527853;
   color: white;

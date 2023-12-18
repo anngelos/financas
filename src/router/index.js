@@ -3,7 +3,8 @@ import HomeView from "../views/HomeView.vue";
 import RegisterView from "../views/RegisterView.vue";
 import DashboardView from "../views/DashboardView.vue";
 import DebtsListView from "../views/DebtsListView.vue";
-import CreateDebtView from "../views/CreateDebtView.vue"
+import CreateDebtView from "../views/CreateDebtView.vue";
+import EditUserView from "../views/EditUserView.vue";
 
 const routes = [
   {
@@ -30,6 +31,11 @@ const routes = [
         path: "/create-debt",
         name: "create-debt",
         component: CreateDebtView
+      },
+      {
+        path: "/edit-user",
+        name: "edit-user",
+        component: EditUserView
       }
     ],
     meta: {
