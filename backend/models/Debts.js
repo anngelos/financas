@@ -23,6 +23,9 @@ const Debts = mongoose.model(
     debtsBillSum: {
       type: Number,
     },
+    remainingValue: {
+      type: Number,
+    },
     user: Object,
   },
   {timestamps: true}),

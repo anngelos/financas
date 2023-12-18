@@ -2,9 +2,7 @@ const Debts = require('../models/Debts');
 const getToken = require('../helpers/get-token');
 const getUserByToken = require('../helpers/get-user-by-token');
 
-module.exports = class DebtsController {
-  
-  // puxar as dividas cadastradas pelos usuarios
+module.exports = class DebtsController {  
   static async getAll(req, res) {
     const debts = await Debts.find();
 
@@ -12,7 +10,6 @@ module.exports = class DebtsController {
       pets: debts,
     })
   }
-
   static async create(req, res) {
     const { monthRef, yearRef, salary, debtsArr } = req.body;
 
@@ -45,12 +42,15 @@ module.exports = class DebtsController {
       sumValue += item.billValue;
     }));
 
+    let remainingValue = salary - sumValue;
+
     const debt = new Debts({
       monthRef,
       yearRef,
       salary,
       debtsArr,
       debtsBillSum: sumValue,
+      remainingValue: remainingValue,
       user: {
         _id: user._id,
         name: user.name,
@@ -66,8 +66,6 @@ module.exports = class DebtsController {
       res.status(500).json({ message: err })
     }
   }
-
-  // puxar as dividas que o usuario logado criou
   static async getAllUserDebts(req, res) {
     const token = getToken(req)
     const user = await getUserByToken(token, res)

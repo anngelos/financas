@@ -5,7 +5,7 @@
   <div class="debts-container-list">
     <div v-for="(debt, i) in debts" :key="i" class="card m-4 bg-[#B6C4B6]">
       <p class="card-title">{{ debt.monthRef.toUpperCase() }} / {{ debt.yearRef }}</p>
-      <table>
+      <table class="table">
         <thead>
           <tr>
             <th>DESPESA</th>
@@ -44,7 +44,7 @@
           <div class="px-4 py-5 sm:p-6">
             <dl>
               <dt class="text-sm leading-5 font-medium text-black">Valor Restante</dt>
-              <dd class="mt-1 text-3xl leading-9 font-semibold text-black">{{ remainingValue() }}</dd>
+              <dd class="mt-1 text-3xl leading-9 font-semibold text-black">{{ formatMoney(debt.remainingValue) }}</dd>
             </dl>
           </div>
         </div>
@@ -119,7 +119,16 @@ export default {
   font-size: 30px;
 }
 
-table {
-  margin: 0px 100px;
+.table {
+  border-collapse: separate;
+  border-spacing: 5px;
+  border: 1px solid black;
+  text-align: center;
+}
+
+th {
+  background-color: black;
+  color: white;
+  padding: 0px 30px;
 }
 </style>
