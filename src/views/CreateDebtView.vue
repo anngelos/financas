@@ -113,7 +113,7 @@ export default {
       monthRef: '',
       yearRef: '',
       salary: '',
-      debtsArr: []
+      debtsArr: [],
     }
   },
   computed: {
@@ -163,7 +163,7 @@ export default {
           this.monthRef = ''
           this.yearRef = ''
           this.salary = ''
-          this.debtsArr = {}
+          this.debtsArr = []
 
           return 'success';
         }

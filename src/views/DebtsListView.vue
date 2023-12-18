@@ -49,6 +49,7 @@
           </div>
         </div>
       </div>
+      <button class="delete-debt-btn" @click="deleteMyDebt(debt._id)">remover</button>
     </div>
   </div>
 </template>
@@ -71,8 +72,20 @@ export default {
     formatMoney(value) {
       return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(value);
     },
-    remainingValue() {
-      return 'Valor Restante'
+    deleteMyDebt(id) {
+      const token = localStorage.getItem('jwt');
+
+      const config = {
+        headers: { Authorization: `Bearer ${token}` }
+      }
+
+      axios.delete(`http://localhost:5000/debts/${id}`, config)
+        .then(response => {
+          window.location.reload();
+        })
+        .catch(error => {
+          console.error('Erro ao excluir a dívida: ', error);
+        });
     },
     async getMyDebts() {
       const url = "http://localhost:5000/debts/mydebts";
@@ -130,5 +143,13 @@ th {
   background-color: black;
   color: white;
   padding: 0px 30px;
+}
+
+.delete-debt-btn {
+  color: red;
+}
+
+.delete-debt-btn:hover {
+  transform: scale(1.2);
 }
 </style>
