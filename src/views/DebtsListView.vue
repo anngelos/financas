@@ -61,9 +61,7 @@ import { mapState } from "vuex";
 export default {
   name: 'DebtsListView',
   data() {
-    return {
-      meunome: 'Angelo',
-    }
+    return {}
   },
   computed: {
     ...mapState(['user', 'debts']),
