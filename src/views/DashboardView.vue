@@ -1,38 +1,43 @@
 <template>
-  <header class="header sticky top-0 bg-[#527853] shadow-md flex items-center justify-between px-8 py-02">
-    <h1 class="w-3/12"></h1>
-    <nav class="nav font-bold text-md">
-      <ul class="flex items-center">
-        <li class="p-4 text-white">
-          <router-link class="cursor-pointer" to="/dashboard" exact>DÍVIDAS</router-link>
-        </li>
-        <li class="p-4 text-white">
-          <router-link class="cursor-pointer" to="/create-debt">CRIAR DÍVIDA</router-link>
-        </li>
-      </ul>
-    </nav>
-    <div class="w-3/12 flex justify-center items-center ang">
-      <div class="menu-item" @click="isOpen = !isOpen">
-        <span class="cursor-pointer text-white mr-2 font-bold">{{ user.name }}</span>
-        <transition name="fade" appear>
-          <div class="sub-menu" v-if="isOpen">
-            <div class="menu-item">
-              <ul>
-                <li class="w-full option-item">
-                  <router-link class="w-full option-item" to="/edit-user">Editar Perfil</router-link>
-                </li>
-                <li>
-                  <button type="button" class="w-full option-item" @click="logUserOut()">Sair</button>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </transition>
+  <div class="flex h-screen bg-gray-100">
+    <div class="hidden md:flex flex-col w-64 bg-gray-800">
+      <div class="flex items-center justify-center h-16 bg-gray-900">
+        <span class="text-white font-bold uppercase">MENU</span>
       </div>
-      <img class="w-10 h-10 p-1 rounded-full user" :src="user.image ? require(`../../backend/public/images/users/${this.user.image}`) : require(`../assets/profilepic.jpg`)">
+      <div class="flex flex-col flex-1 overflow-y-auto">
+        <nav class="flex-1 px-2 py-4 bg-gray-800">
+          <router-link to="/dashboard" class="flex items-center px-4 py-2 text-gray-100 hover:bg-gray-700" exact>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+            Dashboard
+          </router-link>
+
+          <router-link to="/create-debt" class="flex items-center px-4 py-2 mt-2 text-gray-100 hover:bg-gray-700">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-file-earmark-plus h-6 w-6 mr-2" viewBox="0 0 16 16">
+              <path d="M8 6.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V11a.5.5 0 0 1-1 0V9.5H6a.5.5 0 0 1 0-1h1.5V7a.5.5 0 0 1 .5-.5" />
+              <path d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5z" />
+            </svg>
+            Criar Dívida
+          </router-link>
+
+          <router-link to="/edit-user" class="flex items-center px-4 py-2 mt-2 text-gray-100 hover:bg-gray-700">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-person-fill h-6 w-6 mr-2"
+              viewBox="0 0 16 16">
+              <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
+            </svg>
+            {{ user.name }}
+          </router-link>
+        </nav>
+      </div>
     </div>
-  </header>
-  <router-view />
+    <div class="flex flex-col flex-1 overflow-y-auto">
+      <div class="p-4">
+        <router-view />
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -53,28 +58,11 @@ export default {
     })
   },
   methods: {
-    ...mapMutations({
-      clearUser: 'clearUser',
-    }),
     getUserDetails() {
       let token = localStorage.getItem("jwt");
       let decoded = VueJwtDecode.decode(token);
       this.$store.commit('setUser', decoded);
     },
-    logUserOut() {
-      localStorage.removeItem("jwt");
-      this.clearUser()
-      this.$router.push("/");
-      this.$swal.fire({
-        icon: "warning",
-        position: "top-end",
-        text: "Adeus, volte sempre!",
-        toast: true,
-        showConfirmButton: false,
-        timer: 2000,
-        timerProgressBar: true,
-      });
-    }
   },
   created() {
     this.getUserDetails();
@@ -88,7 +76,7 @@ export default {
 }
 
 .router-link-exact-active {
-  border-bottom: 2px solid white;
+  background-color: #374151;
 }
 
 .menu-item .sub-menu {
